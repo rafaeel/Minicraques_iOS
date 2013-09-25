@@ -123,6 +123,7 @@
         UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:@"Minicraques :D" message:@"Favoritado!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [successAlert show];
         [sender removeFromSuperview];
+//        [self.tabBarController.tabBar.items[2] setBadgeValue:[NSString stringWithFormat:@"%i", self.favorites.favoritesMinicraques.count]];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
         NSLog(@"[Error]: (%@ %@) %@", [request HTTPMethod], [[request URL] relativePath], error);
     }];

@@ -7,6 +7,7 @@
 //
 
 #import "FavoritesViewController.h"
+#import "FavoriteDetailViewController.h"
 #import "Favorites.h"
 
 @interface FavoritesViewController ()
@@ -46,6 +47,7 @@
     tableInflate = [[NSArray alloc] initWithArray:self.favorites.favoritesMinicraques];
     NSLog(@"TABLE INFLATE = %@", tableInflate);
     [self.tableView reloadData];
+//    [self.tabBarController.tabBar.items[2] setBadgeValue:[NSString stringWithFormat:@"%i", self.favorites.favoritesMinicraques.count]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,6 +96,16 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"pushFromFavorites"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        
+        FavoriteDetailViewController *fdvc = [segue destinationViewController];
+        fdvc.parseDetail = [self.tableInflate objectAtIndex:indexPath.row];
+    }
 }
 
 @end
